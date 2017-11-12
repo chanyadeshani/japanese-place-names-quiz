@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Japanese Place Names Quiz</string>
+    <string name="congratz">Congratulations!!!</string>
+    <string name="dummy">Dummy text</string>
+    <string name="nextQuestion">Next Question</string>
+    <string name="banner_home_footer">ca-app-pub-4998476997909861/5765130175</string>
+    <string name="quiz">Quiz</string>
+    <string name="quizNumOfCorrectAns">You answered %d out of 10 correctly.</string>
+    <string name="tryAgain">Try Again</string>
+
+    <string-array name="questionModes">
+        <item>Select a mode</item>
+        <item>Japanese</item>
+        <item>English</item>
+    </string-array>
+
 </resources>
