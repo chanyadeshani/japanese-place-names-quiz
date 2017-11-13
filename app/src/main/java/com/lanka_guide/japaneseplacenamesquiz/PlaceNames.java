@@ -1,43 +1,63 @@
 package com.lanka_guide.japaneseplacenamesquiz;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-/**
- * District class
- */
 
 public class PlaceNames {
 
     private static List<PlaceName> placeNames;
     private static List<String> japaneseNames;
     private static List<String> englishNames;
-    private Context context;
+    private static List<String> hiraganaNames;
 
 
 
-    public PlaceNames(Context context) {
-        this.context = context;
-
+    public PlaceNames(JSONObject placeNamesJSON, Category category) {
         placeNames = new ArrayList<>();
         japaneseNames = new ArrayList<>();
         englishNames = new ArrayList<>();
+        hiraganaNames = new ArrayList<>();
 
-        placeNames.add(new PlaceName("羽田", "Haneda", "はねだ"));
-        placeNames.add(new PlaceName("成田", "Narita", "なりた"));
-        placeNames.add(new PlaceName("関西", "Kansai", "かんさい"));
-        placeNames.add(new PlaceName("福岡", "Fukoka", "ふこか"));
+        parsePlaceNamesJSON(placeNames, placeNamesJSON, category);
 
         for (PlaceName placeName : placeNames) {
-            japaneseNames.add(placeName.getJapanese());
+            japaneseNames.add(placeName.getKanji());
             englishNames.add(placeName.getEnglish());
+            hiraganaNames.add(placeName.getHiragana());
+        }
+    }
+
+    private void parsePlaceNamesJSON(List<PlaceName> placeNames, JSONObject placeNamesJSON, Category selectedCategory) {
+        try {
+            JSONArray placeNamesArray = placeNamesJSON.getJSONArray("placeNames");
+            for (int i = 0; i < placeNamesArray.length(); i++) {
+
+                JSONObject categoryJSON = placeNamesArray.getJSONObject(i);
+
+                Category category = Category.valueOf(categoryJSON.getString("category"));
+
+                if(selectedCategory == Category.ALL || category == selectedCategory) {
+                    JSONArray namesArray = categoryJSON.getJSONArray("names");
+
+                    for (int j = 0; j < namesArray.length(); j++) {
+                        JSONObject nameJSON = namesArray.getJSONObject(j);
+                        PlaceName placeName = new PlaceName(category, nameJSON.getString("kanji"), nameJSON.getString("english"), nameJSON
+                                .getString("hiragana"));
+                        placeNames.add(placeName);
+                    }
+                }
+
+                if(category == selectedCategory) {
+                    return;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -58,9 +78,9 @@ public class PlaceNames {
             answers.add(allNames.get(i));
         }
 
-        if (!answers.contains(placeName.getJapanese())) {
+        if (!answers.contains(placeName.getKanji())) {
             answers.remove(0);
-            answers.add(placeName.getJapanese());
+            answers.add(placeName.getKanji());
             Collections.shuffle(answers);
         }
         return answers;
@@ -84,9 +104,27 @@ public class PlaceNames {
         return answers;
     }
 
+    public static List<String> getHiraganaAnswers(PlaceName placeName) {
+        List<String> allNames = new ArrayList<>();
+        allNames.addAll(hiraganaNames);
+        Collections.shuffle(allNames);
+
+        List<String> answers = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            answers.add(allNames.get(i));
+        }
+
+        if (!answers.contains(placeName.getHiragana())) {
+            answers.remove(0);
+            answers.add(placeName.getHiragana());
+            Collections.shuffle(answers);
+        }
+        return answers;
+    }
+
     public static PlaceName getAnswer(String name) {
         for (PlaceName placeName: placeNames) {
-            if(placeName.getJapanese().equals(name)) {
+            if(placeName.getKanji().equals(name)) {
                 return placeName;
             } else if (placeName.getEnglish().equals(name)){
                 return placeName;
@@ -96,18 +134,25 @@ public class PlaceNames {
     }
 
     public static class PlaceName {
-        String japanese;
+
+        Category category;
+        String kanji;
         String english;
         String hiragana;
 
-        public PlaceName(String japanese, String english, String hiragana) {
-            this.japanese = japanese;
+        public PlaceName(Category category, String kanji, String english, String hiragana) {
+            this.category = category;
+            this.kanji = kanji;
             this.english = english;
             this.hiragana = hiragana;
         }
 
-        public String getJapanese() {
-            return japanese;
+        public Category getCategory() {
+            return category;
+        }
+
+        public String getKanji() {
+            return kanji;
         }
 
         public String getEnglish() {
@@ -119,8 +164,13 @@ public class PlaceNames {
         }
     }
 
-
-
+    public enum Category {
+        ALL,
+        AIRPORTS,
+        CITIES,
+        COUNTRIES,
+        PREFECTURES;
+    }
 }
 
 

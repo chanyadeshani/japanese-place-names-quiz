@@ -1,8 +1,8 @@
 package com.lanka_guide.japaneseplacenamesquiz;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +11,7 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity {
 
     private Spinner questionModeSpinner;
+    private Spinner categorySpinner;
     private Preferences preferences;
 
     @Override
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         preferences = new Preferences(this);
 
         initQustionModesSpinner();
+        initCategorySpinner();
     }
 
     public void initQustionModesSpinner() {
@@ -36,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 int selectedItem = questionModeSpinner.getSelectedItemPosition();
                 QuestionMode selectedQuestionMode;
                 if (selectedItem == 2) {
-                    selectedQuestionMode = QuestionMode.ENGLISH;
+                    selectedQuestionMode = QuestionMode.ENGLISH_KANJI;
+                } else if (selectedItem == 3) {
+                    selectedQuestionMode = QuestionMode.KANJI_HIRAGANA;
                 } else {
-                    selectedQuestionMode = QuestionMode.JAPANESE;
+                    selectedQuestionMode = QuestionMode.KANJI_ENGLISH;
                 }
                 preferences.setQuestionMode(selectedQuestionMode);
             }
@@ -52,10 +56,84 @@ public class MainActivity extends AppCompatActivity {
         QuestionMode savedMode = preferences.getQuestionMode();
 
         if (savedMode != null) {
-            if(savedMode == QuestionMode.JAPANESE) {
+            if (savedMode == QuestionMode.KANJI_ENGLISH) {
                 questionModeSpinner.setSelection(1);
-            } else if (savedMode == QuestionMode.ENGLISH) {
+            } else if (savedMode == QuestionMode.ENGLISH_KANJI) {
                 questionModeSpinner.setSelection(2);
+            } else {
+                questionModeSpinner.setSelection(3);
+            }
+        }
+    }
+
+    public void initCategorySpinner() {
+        categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
+
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                int selectedItem = categorySpinner.getSelectedItemPosition();
+                PlaceNames.Category selectedCategory;
+                switch (selectedItem) {
+                    case 1:
+                        selectedCategory = PlaceNames.Category.AIRPORTS;
+                        break;
+                    case 2:
+                        selectedCategory = PlaceNames.Category.CITIES;
+                        break;
+                    case 3:
+                        selectedCategory = PlaceNames.Category.COUNTRIES;
+                        break;
+                    case 4:
+                        selectedCategory = PlaceNames.Category.PREFECTURES;
+                        break;
+                    default:
+                        selectedCategory = PlaceNames.Category.ALL;
+                }
+                preferences.setCategory(selectedCategory);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        QuestionMode savedMode = preferences.getQuestionMode();
+
+        if (savedMode != null) {
+            if (savedMode == QuestionMode.KANJI_ENGLISH) {
+                questionModeSpinner.setSelection(1);
+            } else if (savedMode == QuestionMode.ENGLISH_KANJI) {
+                questionModeSpinner.setSelection(2);
+            } else {
+                questionModeSpinner.setSelection(3);
+            }
+        }
+
+        PlaceNames.Category savedCategory = preferences.getCategory();
+
+        if (savedCategory != null) {
+            switch (savedCategory) {
+                case AIRPORTS:
+                    categorySpinner.setSelection(1);
+                    break;
+                case CITIES:
+                    categorySpinner.setSelection(2);
+                    break;
+                case COUNTRIES:
+                    categorySpinner.setSelection(3);
+                    break;
+                case PREFECTURES:
+                    categorySpinner.setSelection(4);
+                    break;
+                default:
+                    categorySpinner.setSelection(0);
+                    break;
             }
         }
     }
@@ -66,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public enum QuestionMode {
-        JAPANESE,
-        ENGLISH;
+        KANJI_ENGLISH,
+        ENGLISH_KANJI,
+        KANJI_HIRAGANA;
     }
 }

@@ -12,6 +12,11 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +56,9 @@ public class QuizActivity extends AppCompatActivity {
 
         preferences = new Preferences(this);
 
-        new PlaceNames(getApplicationContext());
+        PlaceNames.Category category = preferences.getCategory();
+
+        new PlaceNames(loadPlaceNamesJSONFromAsset(), category);
 
         setContentView(R.layout.quiz_activity);
 
@@ -82,9 +89,12 @@ public class QuizActivity extends AppCompatActivity {
 
         List<String> answers;
 
-        if(preferences.getQuestionMode() == MainActivity.QuestionMode.JAPANESE) {
-            questionText.setText(question.getJapanese());
+        if(preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_ENGLISH) {
+            questionText.setText(question.getKanji());
             answers = PlaceNames.getEnglishAnswers(question);
+        } else if(preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_HIRAGANA) {
+            questionText.setText(question.getKanji());
+            answers = PlaceNames.getHiraganaAnswers(question);
         } else {
             questionText.setText(question.getEnglish());
             answers = PlaceNames.getJapaneseAnswers(question);
@@ -113,7 +123,7 @@ public class QuizActivity extends AppCompatActivity {
 
         String correctAnswer;
         if (placeName.getEnglish().equals(currentQuestion)) {
-            correctAnswer = placeName.getJapanese();
+            correctAnswer = placeName.getKanji();
         } else {
             correctAnswer = placeName.getEnglish();
         }
@@ -277,5 +287,32 @@ public class QuizActivity extends AppCompatActivity {
         timeSpentText.setVisibility(View.GONE);
         tryAgainButton.setVisibility(View.GONE);
         resetAllButtons();
+    }
+
+    public JSONObject loadPlaceNamesJSONFromAsset() {
+        String json = null;
+        try {
+
+            InputStream is = getAssets().open("placeNames.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+            return new JSONObject(json);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

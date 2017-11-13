@@ -5,12 +5,9 @@ import android.content.SharedPreferences;
 
 import java.util.Locale;
 
-/**
- * Created by chanya on 2017/10/05.
- */
-
 public class Preferences {
     private static final String KEY_QUESTION_MODE = "questionMode";
+    private static final String KEY_CATEGORY = "category";
     private static final String PREFER_NAME = "preferencesMain";
 
     Context context;
@@ -44,4 +41,18 @@ public class Preferences {
         editor.putString(KEY_QUESTION_MODE, questionQuestionMode.toString());
         editor.commit();
     }
+
+    public PlaceNames.Category getCategory() {
+        String categoryStr = preferences.getString(KEY_CATEGORY, null);
+        if (categoryStr != null) {
+            return PlaceNames.Category.valueOf(categoryStr);
+        }
+        return PlaceNames.Category.ALL;
+    }
+
+    public void setCategory(PlaceNames.Category category) {
+        editor.putString(KEY_CATEGORY, category.toString());
+        editor.commit();
+    }
+
 }

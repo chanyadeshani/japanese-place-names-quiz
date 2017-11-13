@@ -10,8 +10,17 @@
 
     <string-array name="questionModes">
         <item>Select a mode</item>
-        <item>Japanese</item>
-        <item>English</item>
+        <item>Kanji to English</item>
+        <item>English to Kanji</item>
+        <item>Kanji to Hiragana</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>All</item>
+        <item>Airports</item>
+        <item>Cities</item>
+        <item>Prefectures</item>
+        <item>Countries</item>
     </string-array>
 
 </resources>

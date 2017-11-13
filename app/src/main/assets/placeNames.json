@@ -1,0 +1,29 @@
+{
+  "placeNames": [
+    {
+      "category" : "AIRPORTS",
+      "names": [
+        {
+          "kanji": "羽田",
+          "english": "Haneda",
+          "hiragana": "はねだ"
+        },
+        {
+          "kanji": "成田",
+          "english": "Narita",
+          "hiragana": "なりた"
+        },
+        {
+          "kanji": "関西",
+          "english": "Kansai",
+          "hiragana": "かんさい"
+        },
+        {
+          "kanji": "福岡",
+          "english": "Fukoka",
+          "hiragana": "ふこか"
+        }
+      ]
+    }
+  ]
+}
