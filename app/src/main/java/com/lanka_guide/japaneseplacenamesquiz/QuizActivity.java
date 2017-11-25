@@ -32,19 +32,26 @@ public class QuizActivity extends AppCompatActivity {
     private Button option4;
     private Button nextButton;
     private Button tryAgainButton;
+    private Button continueButton;
+    private Button restartButton;
 
     private TextView questionText;
     private TextView hiraganaText;
     private TextView timeSpentText;
     private TextView resultText;
+    private TextView currentQuestionNumText;
 
     private ColorFilter defaultButtonBackground;
 
     private Set<String> correctAnswers = new HashSet<>();
-    private Set<PlaceNames.PlaceName> displayedQuestions = new HashSet<>();
-    private List<PlaceNames.PlaceName> questions = new ArrayList<>();
+    private Set<PlaceName> displayedQuestions = new HashSet<>();
+    private List<PlaceName> questions = new ArrayList<>();
     private long startTime;
     private int wrongAnswerCount;
+    private PlaceNamesDataHolder placeNamesDataHolder = PlaceNamesDataHolder.INSTANCE;
+    private Category category;
+    private int questionSetId;
+    private CurrentQuestionSet currentQuestionSet;
 
     private AdView mAdView;
     private Preferences preferences;
@@ -56,9 +63,17 @@ public class QuizActivity extends AppCompatActivity {
 
         preferences = new Preferences(this);
 
-        PlaceNames.Category category = preferences.getCategory();
+        category = preferences.getCategory();
 
-        new PlaceNames(loadPlaceNamesJSONFromAsset(), category);
+        questionSetId = preferences.getLastQuestionSetId(category) + 1;
+
+        placeNamesDataHolder.init(loadPlaceNamesJSONFromAsset(), category);
+        if (!loadQuestionSet()) {
+            questionSetId = 1;
+            placeNamesDataHolder.init(loadPlaceNamesJSONFromAsset(), Category.ALL);
+            category = Category.ALL;
+            loadQuestionSet();
+        }
 
         setContentView(R.layout.quiz_activity);
 
@@ -67,6 +82,7 @@ public class QuizActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
         questionText = findViewById(R.id.question);
+        currentQuestionNumText = findViewById(R.id.questionNumber);
 
         init();
 
@@ -75,7 +91,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void init() {
-        questions = PlaceNames.getPlaceNames();
+        questions = currentQuestionSet.getPlaceNames();
         correctAnswers.clear();
         displayedQuestions.clear();
         setQuestionAndAnwers();
@@ -84,20 +100,22 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setQuestionAndAnwers() {
-        PlaceNames.PlaceName question = questions.get(0);
+        PlaceName question = questions.get(0);
         questions.remove(0);
 
         List<String> answers;
 
-        if(preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_ENGLISH) {
+        currentQuestionNumText.setText(String.format(getString(R.string.currentQuesNum), displayedQuestions.size() + 1
+                , PlaceNamesDataHolder.QUESTION_SET_SIZE));
+        if (preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_ENGLISH) {
             questionText.setText(question.getKanji());
-            answers = PlaceNames.getEnglishAnswers(question);
-        } else if(preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_HIRAGANA) {
+            answers = currentQuestionSet.getEnglishAnswers(question);
+        } else if (preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_HIRAGANA) {
             questionText.setText(question.getKanji());
-            answers = PlaceNames.getHiraganaAnswers(question);
+            answers = currentQuestionSet.getHiraganaAnswers(question);
         } else {
             questionText.setText(question.getEnglish());
-            answers = PlaceNames.getJapaneseAnswers(question);
+            answers = currentQuestionSet.getJapaneseAnswers(question);
         }
 
         option1 = findViewById(R.id.option1);
@@ -119,7 +137,7 @@ public class QuizActivity extends AppCompatActivity {
 
     public void clickAnswer(View view) {
         String currentQuestion = questionText.getText().toString();
-        PlaceNames.PlaceName placeName = PlaceNames.getAnswer(currentQuestion);
+        PlaceName placeName = currentQuestionSet.getAnswer(currentQuestion);
 
         String correctAnswer;
         if (placeName.getEnglish().equals(currentQuestion)) {
@@ -143,7 +161,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void showAnswer(PlaceNames.PlaceName placeName, String correctAnswer, Button selectedButton) {
+    private void showAnswer(PlaceName placeName, String correctAnswer, Button selectedButton) {
         String selectedAnswer = selectedButton.getText().toString();
 
         if (selectedAnswer.equals(correctAnswer)) {
@@ -260,6 +278,14 @@ public class QuizActivity extends AppCompatActivity {
 
             hideQuestionAndAnswers();
             showTimeSpent();
+            questionSetId++;
+            if (loadQuestionSet()) {
+                continueButton = findViewById(R.id.continueButton);
+                continueButton.setVisibility(View.VISIBLE);
+                preferences.setLastQuestionSetId(category, questionSetId);
+            } else {
+                preferences.setLastQuestionSetId(category, 0);
+            }
         } else if (questions.isEmpty()) {
             resultText = findViewById(R.id.quizResult);
             resultText.setVisibility(View.VISIBLE);
@@ -306,13 +332,36 @@ public class QuizActivity extends AppCompatActivity {
             json = new String(buffer, "UTF-8");
             return new JSONObject(json);
 
-        } catch (IOException ex) {
+        } catch (IOException | JSONException ex) {
             ex.printStackTrace();
-            return null;
-        } catch (JSONException e) {
-            e.printStackTrace();
             return null;
         }
 
+    }
+
+    public boolean loadQuestionSet() {
+        List<PlaceName> questions = placeNamesDataHolder.getQuestionSet(questionSetId);
+        if (questions != null) {
+            currentQuestionSet = new CurrentQuestionSet(questions);
+            return true;
+        }
+        return false;
+    }
+
+    public void clickContinue(View view) {
+        init();
+        resultText.setVisibility(View.GONE);
+        timeSpentText.setVisibility(View.GONE);
+        tryAgainButton.setVisibility(View.GONE);
+        resetAllButtons();
+    }
+
+    public void clickRestart(View view) {
+        preferences.setLastQuestionSetId(category, 0);
+        init();
+        resultText.setVisibility(View.GONE);
+        timeSpentText.setVisibility(View.GONE);
+        tryAgainButton.setVisibility(View.GONE);
+        resetAllButtons();
     }
 }

@@ -3,12 +3,11 @@ package com.lanka_guide.japaneseplacenamesquiz;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.Locale;
-
 public class Preferences {
     private static final String KEY_QUESTION_MODE = "questionMode";
     private static final String KEY_CATEGORY = "category";
     private static final String PREFER_NAME = "preferencesMain";
+    private static final String LAST_QUESTION_SET = "lastQuestionSet";
 
     Context context;
     SharedPreferences preferences;
@@ -42,16 +41,25 @@ public class Preferences {
         editor.commit();
     }
 
-    public PlaceNames.Category getCategory() {
+    public Category getCategory() {
         String categoryStr = preferences.getString(KEY_CATEGORY, null);
         if (categoryStr != null) {
-            return PlaceNames.Category.valueOf(categoryStr);
+            return Category.valueOf(categoryStr);
         }
-        return PlaceNames.Category.ALL;
+        return Category.ALL;
     }
 
-    public void setCategory(PlaceNames.Category category) {
+    public void setCategory(Category category) {
         editor.putString(KEY_CATEGORY, category.toString());
+        editor.commit();
+    }
+
+    public int getLastQuestionSetId(Category category) {
+        return preferences.getInt(LAST_QUESTION_SET + "_" + category.name(), 0);
+    }
+
+    public void setLastQuestionSetId(Category category, int id) {
+        editor.putInt(LAST_QUESTION_SET + "_" + category.name(), id);
         editor.commit();
     }
 

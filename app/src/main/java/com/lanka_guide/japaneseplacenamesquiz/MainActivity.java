@@ -77,22 +77,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 int selectedItem = categorySpinner.getSelectedItemPosition();
-                PlaceNames.Category selectedCategory;
+                Category selectedCategory;
                 switch (selectedItem) {
                     case 1:
-                        selectedCategory = PlaceNames.Category.AIRPORTS;
+                        selectedCategory = Category.AIRPORTS;
                         break;
                     case 2:
-                        selectedCategory = PlaceNames.Category.CITIES;
+                        selectedCategory = Category.CITIES;
                         break;
                     case 3:
-                        selectedCategory = PlaceNames.Category.COUNTRIES;
+                        selectedCategory = Category.COUNTRIES;
                         break;
                     case 4:
-                        selectedCategory = PlaceNames.Category.PREFECTURES;
+                        selectedCategory = Category.PREFECTURES;
                         break;
                     default:
-                        selectedCategory = PlaceNames.Category.ALL;
+                        selectedCategory = Category.ALL;
                 }
                 preferences.setCategory(selectedCategory);
             }
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        PlaceNames.Category savedCategory = preferences.getCategory();
+        Category savedCategory = preferences.getCategory();
 
         if (savedCategory != null) {
             switch (savedCategory) {

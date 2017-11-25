@@ -7,6 +7,9 @@
     <string name="quiz">Quiz</string>
     <string name="quizNumOfCorrectAns">You answered %d out of 10 correctly.</string>
     <string name="tryAgain">Try Again</string>
+    <string name="continueQuiz">Continue</string>
+    <string name="currentQuesNum">%d of %d</string>
+    <string name="restartQuiz">Do it again !</string>
 
     <string-array name="questionModes">
         <item>Select a mode</item>
