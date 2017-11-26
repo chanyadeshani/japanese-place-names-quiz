@@ -7,6 +7,6 @@ public enum Category {
     ALL,
     AIRPORTS,
     CITIES,
-    COUNTRIES,
-    PREFECTURES;
+    PREFECTURES,
+    COUNTRIES;
 }

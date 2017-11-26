@@ -352,7 +352,7 @@ public class QuizActivity extends AppCompatActivity {
         init();
         resultText.setVisibility(View.GONE);
         timeSpentText.setVisibility(View.GONE);
-        tryAgainButton.setVisibility(View.GONE);
+        continueButton.setVisibility(View.GONE);
         resetAllButtons();
     }
 
@@ -361,7 +361,7 @@ public class QuizActivity extends AppCompatActivity {
         init();
         resultText.setVisibility(View.GONE);
         timeSpentText.setVisibility(View.GONE);
-        tryAgainButton.setVisibility(View.GONE);
+        restartButton.setVisibility(View.GONE);
         resetAllButtons();
     }
 }

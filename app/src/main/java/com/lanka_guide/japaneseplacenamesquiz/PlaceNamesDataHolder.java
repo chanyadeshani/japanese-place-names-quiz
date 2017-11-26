@@ -52,7 +52,7 @@ public enum PlaceNamesDataHolder {
                         if (counter == QUESTION_SET_SIZE) {
                             questionSets.put(questionSetId, questionSet);
                             counter = 0;
-                            questionSet.clear();
+                            questionSet = new ArrayList<>();
                             questionSetId++;
                         }
                     }

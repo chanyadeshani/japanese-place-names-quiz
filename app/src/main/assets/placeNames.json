@@ -1,7 +1,7 @@
 {
   "placeNames": [
     {
-      "category" : "AIRPORTS",
+      "category": "AIRPORTS",
       "names": [
         {
           "kanji": "羽田",
@@ -21,7 +21,537 @@
         {
           "kanji": "福岡",
           "english": "Fukoka",
-          "hiragana": "ふこか"
+          "hiragana": "ふくおか"
+        },
+        {
+          "kanji": "新千歳",
+          "english": "New Chitose",
+          "hiragana": "しんちとせ"
+        },
+        {
+          "kanji": "那覇",
+          "english": "Naha",
+          "hiragana": "なは"
+        },
+        {
+          "kanji": "伊丹",
+          "english": "Itami",
+          "hiragana": "いたみ"
+        },
+        {
+          "kanji": "中部",
+          "english": "Chubu",
+          "hiragana": "ちゅうぶ"
+        },
+        {
+          "kanji": "鹿児島",
+          "english": "Kagoshima",
+          "hiragana": "かごしま"
+        },
+        {
+          "kanji": "熊本",
+          "english": "Kumamoto",
+          "hiragana": "くまもと"
+        },
+        {
+          "kanji": "仙台",
+          "english": "Sendai",
+          "hiragana": "せんだい"
+        },
+        {
+          "kanji": "長崎",
+          "english": "Nagasaki",
+          "hiragana": "ながさき"
+        },
+        {
+          "kanji": "宮崎",
+          "english": "Miyazaki",
+          "hiragana": "みやざき"
+        },
+        {
+          "kanji": "松山",
+          "english": "Matsuyama",
+          "hiragana": "まつやま"
+        },
+        {
+          "kanji": "広島",
+          "english": "Hiroshima",
+          "hiragana": "ひろしま"
+        },
+        {
+          "kanji": "神戸",
+          "english": "Kobe",
+          "hiragana": "こうべ"
+        },
+        {
+          "kanji": "石垣",
+          "english": "Ishigaki",
+          "hiragana": "いしがき"
+        },
+        {
+          "kanji": "大分",
+          "english": "Oita",
+          "hiragana": "おおいた"
+        },
+        {
+          "kanji": "小松",
+          "english": "Komatsu",
+          "hiragana": "こまつ"
+        },
+        {
+          "kanji": "高松",
+          "english": "Takamatsu",
+          "hiragana": "たかまつ"
+        }
+      ]
+    },
+    {
+      "category": "CITIES",
+      "names": [
+        {
+          "kanji": "東京",
+          "english": "Tokyo",
+          "hiragana": "とうきょう"
+        },
+        {
+          "kanji": "横浜",
+          "english": "Yokohama",
+          "hiragana": "よこはま"
+        },
+        {
+          "kanji": "大阪",
+          "english": "Osaka",
+          "hiragana": "おおさか"
+        },
+        {
+          "kanji": "名古屋",
+          "english": "Nagoya",
+          "hiragana": "なごや"
+        },
+        {
+          "kanji": "札幌",
+          "english": "Sapporo",
+          "hiragana": "さっぽろ"
+        },
+        {
+          "kanji": "神戸",
+          "english": "Kobe",
+          "hiragana": "こうべ"
+        },
+        {
+          "kanji": "京都",
+          "english": "Kyoto",
+          "hiragana": "きょうと"
+        },
+        {
+          "kanji": "福岡",
+          "english": "Fukuoka",
+          "hiragana": "ふくおか"
+        },
+        {
+          "kanji": "川崎",
+          "english": "Kawasaki",
+          "hiragana": "かわさき"
+        },
+        {
+          "kanji": "さいたま",
+          "english": "Saitama",
+          "hiragana": "さいたま"
+        },
+        {
+          "kanji": "広島",
+          "english": "Hiroshima",
+          "hiragana": "ひろしま"
+        },
+        {
+          "kanji": "仙台",
+          "english": "Sendai",
+          "hiragana": "せんだい"
+        },
+        {
+          "kanji": "北九州",
+          "english": "Kitakyushu",
+          "hiragana": "きたきゅうしゅう"
+        },
+        {
+          "kanji": "千葉",
+          "english": "Chiba",
+          "hiragana": "ちば"
+        },
+        {
+          "kanji": "世田谷",
+          "english": "Setagaya",
+          "hiragana": "せたがや"
+        },
+        {
+          "kanji": "堺市",
+          "english": "Sakai",
+          "hiragana": "さかいし"
+        },
+        {
+          "kanji": "新潟",
+          "english": "Niigata",
+          "hiragana": "にいがた"
+        },
+        {
+          "kanji": "浜松",
+          "english": "Hamamatsu",
+          "hiragana": "はままつ"
+        },
+        {
+          "kanji": "静岡",
+          "english": "Shizuoka",
+          "hiragana": "しずおか"
+        },
+        {
+          "kanji": "相模原",
+          "english": "Sagamihara",
+          "hiragana": "さがみはら"
+        }
+      ]
+    },
+    {
+      "category": "PREFECTURES",
+      "names": [
+        {
+          "kanji": "愛知県",
+          "english": "Aichi",
+          "hiragana": "あいちけん"
+        },
+        {
+          "kanji": "秋田県",
+          "english": "Akita",
+          "hiragana": "あきたけん"
+        },
+        {
+          "kanji": "青森県",
+          "english": "Aomori",
+          "hiragana": "あおもりけん"
+        },
+        {
+          "kanji": "千葉県",
+          "english": "Chiba",
+          "hiragana": "ちばけん"
+        },
+        {
+          "kanji": "愛媛県",
+          "english": "Ehime",
+          "hiragana": "えひめけん"
+        },
+        {
+          "kanji": "福井県",
+          "english": "Fukui",
+          "hiragana": "ふくいけん"
+        },
+        {
+          "kanji": "福岡県",
+          "english": "Fukuoka",
+          "hiragana": "ふくおかけん"
+        },
+        {
+          "kanji": "福島県",
+          "english": "Fukushima",
+          "hiragana": "ふくしまけん"
+        },
+        {
+          "kanji": "岐阜県",
+          "english": "Gifu",
+          "hiragana": "ぎふけん"
+        },
+        {
+          "kanji": "群馬県",
+          "english": "Gunma",
+          "hiragana": "ぐんまけん"
+        },
+        {
+          "kanji": "広島県",
+          "english": "Hiroshima",
+          "hiragana": "ひろしまけん"
+        },
+        {
+          "kanji": "北海道",
+          "english": "Hokkaido",
+          "hiragana": "ほっかいどう"
+        },
+        {
+          "kanji": "兵庫県",
+          "english": "Hyōgo",
+          "hiragana": "ひょうごけん"
+        },
+        {
+          "kanji": "茨城県",
+          "english": "Ibaraki",
+          "hiragana": "いばらきけん"
+        },
+        {
+          "kanji": "石川県",
+          "english": "Ishikawa",
+          "hiragana": "いしかわけん"
+        },
+        {
+          "kanji": "岩手県",
+          "english": "Iwate",
+          "hiragana": "いわてけん"
+        },
+        {
+          "kanji": "香川県",
+          "english": "Kagawa",
+          "hiragana": "かがわけん"
+        },
+        {
+          "kanji": "鹿児島県",
+          "english": "Kagoshima",
+          "hiragana": "かごしまけん"
+        },
+        {
+          "kanji": "神奈川県",
+          "english": "Kanagawa",
+          "hiragana": "かながわけん"
+        },
+        {
+          "kanji": "高知県",
+          "english": "Kōchi",
+          "hiragana": "こうちけん"
+        },
+        {
+          "kanji": "熊本県",
+          "english": "Kumamoto",
+          "hiragana": "くまもとけん"
+        },
+        {
+          "kanji": "京都府",
+          "english": "Kyoto",
+          "hiragana": "きょうとふ"
+        },
+        {
+          "kanji": "三重県",
+          "english": "Mie",
+          "hiragana": "みえけん"
+        },
+        {
+          "kanji": "宮城県",
+          "english": "Miyagi",
+          "hiragana": "みやぎけん"
+        },
+        {
+          "kanji": "宮崎県",
+          "english": "Miyazaki",
+          "hiragana": "みやざきけん"
+        },
+        {
+          "kanji": "長野県",
+          "english": "Nagano",
+          "hiragana": "ながのけん"
+        },
+        {
+          "kanji": "長崎県",
+          "english": "Nagasaki",
+          "hiragana": "ながさきけん"
+        },
+        {
+          "kanji": "奈良県",
+          "english": "Nara",
+          "hiragana": "ならけん"
+        },
+        {
+          "kanji": "新潟県",
+          "english": "Niigata",
+          "hiragana": "にいがたけん"
+        },
+        {
+          "kanji": "大分県",
+          "english": "Ōita",
+          "hiragana": "おおいたけん"
+        },
+        {
+          "kanji": "岡山県",
+          "english": "Okayama",
+          "hiragana": "おかやまけん"
+        },
+        {
+          "kanji": "沖縄県",
+          "english": "Okinawa",
+          "hiragana": "おきなわけん"
+        },
+        {
+          "kanji": "大阪府",
+          "english": "Osaka",
+          "hiragana": "おおさかふ"
+        },
+        {
+          "kanji": "佐賀県",
+          "english": "Saga",
+          "hiragana": "さがけん"
+        },
+        {
+          "kanji": "埼玉県",
+          "english": "Saitama",
+          "hiragana": "さいたまけん"
+        },
+        {
+          "kanji": "滋賀県",
+          "english": "Shiga",
+          "hiragana": "しがけん"
+        },
+        {
+          "kanji": "島根県",
+          "english": "Shimane",
+          "hiragana": "しまねけん"
+        },
+        {
+          "kanji": "静岡県",
+          "english": "Shizuoka",
+          "hiragana": "しずおかけん"
+        },
+        {
+          "kanji": "栃木県",
+          "english": "Tochigi",
+          "hiragana": "とちぎけん"
+        },
+        {
+          "kanji": "徳島県",
+          "english": "Tokushima",
+          "hiragana": "とくしまけん"
+        },
+        {
+          "kanji": "東京都",
+          "english": "Tokyo",
+          "hiragana": "とうきょうと"
+        },
+        {
+          "kanji": "鳥取県",
+          "english": "Tottori",
+          "hiragana": "とっとりけん"
+        },
+        {
+          "kanji": "富山県",
+          "english": "Toyama",
+          "hiragana": "とやまけん"
+        },
+        {
+          "kanji": "和歌山県",
+          "english": "Wakayama",
+          "hiragana": "わかやまけん"
+        },
+        {
+          "kanji": "山形県",
+          "english": "Yamagata",
+          "hiragana": "やまがたけん"
+        },
+        {
+          "kanji": "山口県",
+          "english": "Yamaguchi",
+          "hiragana": "やまぐちけん"
+        },
+        {
+          "kanji": "山梨県",
+          "english": "Yamanashi",
+          "hiragana": "やまなしけん"
+        }
+      ]
+    },
+    {
+      "category": "COUNTRIES",
+      "names": [
+        {
+          "kanji": "日本",
+          "english": "Japan",
+          "hiragana": "にっぽん"
+        },
+        {
+          "kanji": "アメリカ",
+          "english": "America",
+          "hiragana": "あめりか"
+        },
+        {
+          "kanji": "中国",
+          "english": "China",
+          "hiragana": "ちゅうごく"
+        },
+        {
+          "kanji": "ドイツ",
+          "english": "Germany",
+          "hiragana": "どいつ"
+        },
+        {
+          "kanji": "イギリス",
+          "english": "United Kingdom",
+          "hiragana": "いぎりす"
+        },
+        {
+          "kanji": "フランス",
+          "english": "France",
+          "hiragana": "ふらんす"
+        },
+        {
+          "kanji": "ブラジル",
+          "english": "Brazil",
+          "hiragana": "ぶらじる"
+        },
+        {
+          "kanji": "イタリア",
+          "english": "Italy",
+          "hiragana": "いたりあ"
+        },
+        {
+          "kanji": "インド",
+          "english": "India",
+          "hiragana": "いんど"
+        },
+        {
+          "kanji": "ロシア",
+          "english": "Russia",
+          "hiragana": "ろしあ"
+        },
+        {
+          "kanji": "カナダ",
+          "english": "Canada",
+          "hiragana": "かなだ"
+        },
+        {
+          "kanji": "オーストラリア",
+          "english": "Australia",
+          "hiragana": "おーすとらりあ"
+        },
+        {
+          "kanji": "韓国",
+          "english": "South Korea",
+          "hiragana": "かんこく"
+        },
+        {
+          "kanji": "メキシコ",
+          "english": "Mexico",
+          "hiragana": "めきしこ"
+        },
+        {
+          "kanji": "インドネシア",
+          "english": "Indonesia",
+          "hiragana": "いんどねしあ"
+        },
+        {
+          "kanji": "トルコ",
+          "english": "Turkey",
+          "hiragana": "とるこ"
+        },
+        {
+          "kanji": "サウジアラビア",
+          "english": "Saudi Arabia",
+          "hiragana": "さうじあらびあ"
+        },
+        {
+          "kanji": "アルゼンチン",
+          "english": "Argentina",
+          "hiragana": "あるぜんちん"
+        },
+        {
+          "kanji": "南アフリカ",
+          "english": "South Africa",
+          "hiragana": "みなみあふりか"
+        },
+        {
+          "kanji": "スリランカ",
+          "english": "Sri Lanka",
+          "hiragana": "すりらんか"
         }
       ]
     }

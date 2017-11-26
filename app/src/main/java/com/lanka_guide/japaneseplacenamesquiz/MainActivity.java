@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
                         selectedCategory = Category.CITIES;
                         break;
                     case 3:
-                        selectedCategory = Category.COUNTRIES;
+                        selectedCategory = Category.PREFECTURES;
                         break;
                     case 4:
-                        selectedCategory = Category.PREFECTURES;
+                        selectedCategory = Category.COUNTRIES;
                         break;
                     default:
                         selectedCategory = Category.ALL;
