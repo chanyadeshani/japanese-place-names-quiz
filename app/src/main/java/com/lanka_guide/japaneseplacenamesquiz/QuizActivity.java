@@ -140,11 +140,14 @@ public class QuizActivity extends AppCompatActivity {
         PlaceName placeName = currentQuestionSet.getAnswer(currentQuestion);
 
         String correctAnswer;
-        if (placeName.getEnglish().equals(currentQuestion)) {
-            correctAnswer = placeName.getKanji();
-        } else {
+        if (preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_ENGLISH) {
             correctAnswer = placeName.getEnglish();
+        } else if (preferences.getQuestionMode() == MainActivity.QuestionMode.KANJI_HIRAGANA) {
+            correctAnswer = placeName.getHiragana();
+        } else {
+            correctAnswer = placeName.getKanji();
         }
+
         switch (view.getId()) {
             case R.id.option1:
                 showAnswer(placeName, correctAnswer, option1);

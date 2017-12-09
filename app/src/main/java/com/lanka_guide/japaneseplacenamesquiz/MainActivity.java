@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initQustionModesSpinner() {
-        questionModeSpinner = (Spinner) findViewById(R.id.questionModeSpinner);
+        questionModeSpinner = findViewById(R.id.questionModeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.questionModes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initCategorySpinner() {
-        categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        categorySpinner = findViewById(R.id.categorySpinner);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
                 case CITIES:
                     categorySpinner.setSelection(2);
                     break;
-                case COUNTRIES:
+                case PREFECTURES:
                     categorySpinner.setSelection(3);
                     break;
-                case PREFECTURES:
+                case COUNTRIES:
                     categorySpinner.setSelection(4);
                     break;
                 default:
@@ -146,6 +146,6 @@ public class MainActivity extends AppCompatActivity {
     public enum QuestionMode {
         KANJI_ENGLISH,
         ENGLISH_KANJI,
-        KANJI_HIRAGANA;
+        KANJI_HIRAGANA
     }
 }
